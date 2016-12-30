@@ -1,0 +1,1 @@
+INSERT INTO SHORT_URL(HOST_DOMAIN, PATH, ORIGIN_URL) VALUES ('localhost:8080', 'abcd', 'http://www.naver.com');

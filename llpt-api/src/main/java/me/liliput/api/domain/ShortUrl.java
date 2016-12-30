@@ -8,13 +8,18 @@ import java.io.Serializable;
  * Email : eenan@sk.com
  */
 @Entity
+@Table(name = "SHORT_URL")
 public class ShortUrl extends BaseEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
+    @Column(name = "HOST_DOMAIN")
     private String domain;
+    @Column(name = "PATH")
     private String path;
+    @Column(name = "ORIGIN_URL")
     private String originUrl;
 
     public Long getId() {
