@@ -2,6 +2,7 @@ package me.liliput.api.controller;
 
 import com.google.common.net.HttpHeaders;
 import me.liliput.api.controller.model.request.RouteRequest;
+import me.liliput.api.service.RouteLogService;
 import me.liliput.api.service.ShortUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,11 @@ public class RoutingController {
 
     @Autowired
     private UrlPathHelper urlPathHelper;
+
     @Autowired
     private ShortUrlService shortUrlService;
+    @Autowired
+    private RouteLogService routeLogService;
 
     @RequestMapping(value = {"/{path}"}, method = RequestMethod.GET)
     public String get(@PathVariable String path, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -45,6 +49,7 @@ public class RoutingController {
         String query = request.getQueryString();
 
         RouteRequest routeRequest = new RouteRequest(path, userAgent, referer, remoteAddress, query);
+        this.routeLogService.createRouteLog(routeRequest);
 
         return routeRequest;
     }
