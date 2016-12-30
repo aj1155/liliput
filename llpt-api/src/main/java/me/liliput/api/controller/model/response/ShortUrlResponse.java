@@ -1,9 +1,6 @@
 package me.liliput.api.controller.model.response;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import me.liliput.api.domain.ShortUrl;
 
 /**
@@ -13,6 +10,7 @@ import me.liliput.api.domain.ShortUrl;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class ShortUrlResponse {
     private ShortUrl shortUrl;

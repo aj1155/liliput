@@ -7,6 +7,9 @@ import me.liliput.api.repository.ShortUrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 1002731 on 2016. 12. 30..
  * Email : eenan@sk.com
@@ -29,5 +32,26 @@ public class ShortUrlService {
         shortUrlResponse.setShortUrl(shortUrl);
 
         return shortUrlResponse;
+    }
+
+    public List<ShortUrlResponse> getShortUrls(){
+        List<ShortUrl> shortUrlList = this.shortUrlRepository.findAll();
+
+        List<ShortUrlResponse> shortUrlResponseList = new ArrayList<>();
+        shortUrlList.forEach(shortUrl -> {
+            shortUrlResponseList.add(new ShortUrlResponse(shortUrl));
+        });
+
+        return shortUrlResponseList;
+    }
+
+    public String getOriginUrl(String path){
+        String originUrl = this.shortUrlRepository.findByOriginUrl(path);
+        if(originUrl == null){
+            return "/";
+        }
+        else{
+            return originUrl;
+        }
     }
 }
