@@ -31,7 +31,7 @@ public class ShortUrlController {
     }
 
     @RequestMapping(value = {"/url/all"}, method = RequestMethod.GET)
-    public LlptApiResponse<List<ShortUrlResponse>> readShortUrls(){
+    public LlptApiResponse<List<ShortUrlResponse>> readShortUrls() {
         return new LlptApiResponse(this.shortUrlService.getShortUrls());
     }
 }

@@ -9,7 +9,7 @@ import java.net.URLDecoder;
  * Created by 1002731 on 2016. 12. 30..
  * Email : eenan@sk.com
  */
-public class RouteRequest {
+public class RouteLogRequest {
 
     private final String path;
     private final String userAgent;
@@ -17,11 +17,11 @@ public class RouteRequest {
     private final String remoteAddress;
     private final String query;
 
-    public RouteRequest(String path, String userAgent) throws UnsupportedEncodingException {
+    public RouteLogRequest(String path, String userAgent) throws UnsupportedEncodingException {
         this(path, userAgent, null, null, null);
     }
 
-    public RouteRequest(String path, String userAgent, String referer, String remoteAddress, String query) throws UnsupportedEncodingException {
+    public RouteLogRequest(String path, String userAgent, String referer, String remoteAddress, String query) throws UnsupportedEncodingException {
         this.path = Strings.nullToEmpty(path);
         this.userAgent = Strings.nullToEmpty(userAgent);
         this.referer = Strings.nullToEmpty(referer);
@@ -65,6 +65,12 @@ public class RouteRequest {
 
     @Override
     public String toString() {
-        return new StringBuilder("[path='").append(path).append('\'').append(", userAgent='").append(userAgent).append("\']").toString();
+        return "RouteLogRequest{" +
+                "path='" + path + '\'' +
+                ", userAgent='" + userAgent + '\'' +
+                ", referer='" + referer + '\'' +
+                ", remoteAddress='" + remoteAddress + '\'' +
+                ", query='" + query + '\'' +
+                '}';
     }
 }

@@ -1,7 +1,8 @@
 package me.liliput.api.controller;
 
 import com.google.common.net.HttpHeaders;
-import me.liliput.api.controller.model.request.RouteRequest;
+import lombok.extern.slf4j.Slf4j;
+import me.liliput.api.controller.model.request.RouteLogRequest;
 import me.liliput.api.service.RouteLogService;
 import me.liliput.api.service.ShortUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.io.UnsupportedEncodingException;
  * Email : eenan@sk.com
  */
 @Controller
+@Slf4j
 public class RoutingController {
 
     @Autowired
@@ -34,23 +36,23 @@ public class RoutingController {
 
     @RequestMapping(value = {"/{path}"}, method = RequestMethod.GET)
     public String get(@PathVariable String path, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RouteRequest routeRequest = getRouteRequest(request);
+        RouteLogRequest routeRequest = getRouteRequest(request);
 
         String originUrl = this.shortUrlService.getOriginUrl(routeRequest.getPath());
 
         return "redirect:" + originUrl;
     }
 
-    private RouteRequest getRouteRequest(HttpServletRequest request) throws UnsupportedEncodingException {
+    private RouteLogRequest getRouteRequest(HttpServletRequest request) throws UnsupportedEncodingException {
         String path = urlPathHelper.getLookupPathForRequest(request);
         String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
         String referer = request.getHeader(HttpHeaders.REFERER);
         String remoteAddress = request.getRemoteAddr();
         String query = request.getQueryString();
+        RouteLogRequest routeLogRequest = new RouteLogRequest(path, userAgent, referer, remoteAddress, query);
+        this.routeLogService.createRouteLog(routeLogRequest);
 
-        RouteRequest routeRequest = new RouteRequest(path, userAgent, referer, remoteAddress, query);
-        this.routeLogService.createRouteLog(routeRequest);
-
-        return routeRequest;
+        log.debug(routeLogRequest.toString());
+        return routeLogRequest;
     }
 }
