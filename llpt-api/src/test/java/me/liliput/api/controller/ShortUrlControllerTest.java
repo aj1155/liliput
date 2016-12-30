@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,5 +45,17 @@ public class ShortUrlControllerTest {
 
         log.debug("{}", result.getResponse().getContentAsString());
 
+    }
+
+    @Test
+    public void testReadShortUrls() throws Exception {
+        MvcResult result = mockMvc.perform(get("/api/v1/shorten/url/all")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code", is(200)))
+                .andReturn();
+
+        log.debug("{}", result.getResponse().getContentAsString());
     }
 }
