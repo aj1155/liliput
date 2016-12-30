@@ -1,0 +1,55 @@
+{
+  "code": 200,
+  "result": [
+    {
+      "shortUrl": {
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "id": 1,
+        "domain": "localhost:8080",
+        "path": "abcd",
+        "originUrl": "http://www.naver.com"
+      }
+    },
+    {
+      "shortUrl": {
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "id": 2,
+        "domain": "localhost:8080/",
+        "path": "testPath",
+        "originUrl": "google.com"
+      }
+    },
+    {
+      "shortUrl": {
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "id": 3,
+        "domain": "localhost:8080/",
+        "path": "naver",
+        "originUrl": "www.naver.com"
+      }
+    },
+    {
+      "shortUrl": {
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "id": 4,
+        "domain": "localhost:8080/",
+        "path": "daum",
+        "originUrl": "www.daum.net"
+      }
+    },
+    {
+      "shortUrl": {
+        "createdDate": null,
+        "lastModifiedDate": null,
+        "id": 5,
+        "domain": "localhost:8080/",
+        "path": "nate",
+        "originUrl": "www.nate.com"
+      }
+    }
+  ]
+}
