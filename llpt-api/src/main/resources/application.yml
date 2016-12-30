@@ -1,0 +1,26 @@
+spring.application.name: getdone
+
+spring.jpa:
+  database: MYSQL
+  showSql: true
+  properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  properties.hibernate.hbm2ddl.auto: update
+  properties.hibernate.format_sql: true
+  properties.hibernate.use_sql_comments: true
+
+logging.level:
+  com.skplanet.rnb: DEBUG
+  org.springframework: INFO
+  org.hibernate.SQL: DEBUG
+  org.hibernate.type: TRACE
+  org.hibernate.type.BasicTypeRegistry: WARN
+
+spring.datasource:
+  platform: h2
+  url: jdbc:h2:mem:getdone;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+  username: sa
+  initialize: true
+
+spring.h2.console:
+  enabled: true
+  settings.web-allow-others: true
