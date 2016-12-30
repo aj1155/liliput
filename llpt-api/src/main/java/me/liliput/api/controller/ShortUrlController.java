@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by 1002731 on 2016. 12. 30..
@@ -25,8 +26,12 @@ public class ShortUrlController {
 
     @RequestMapping(value = {"/url"}, method = RequestMethod.POST)
     public LlptApiResponse<ShortUrlResponse> createShortUrl(@Valid @RequestBody ShortUrlRequest shortUrlRequest) {
-        System.out.println(shortUrlRequest.toString());
         ShortUrlResponse shortUrlResponse = this.shortUrlService.createShortUrl(shortUrlRequest);
         return new LlptApiResponse(shortUrlResponse);
+    }
+
+    @RequestMapping(value = {"/url/all"}, method = RequestMethod.GET)
+    public LlptApiResponse<List<ShortUrlResponse>> readShortUrls(){
+        return new LlptApiResponse(this.shortUrlService.getShortUrls());
     }
 }
