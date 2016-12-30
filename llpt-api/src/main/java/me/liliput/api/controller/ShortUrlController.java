@@ -2,6 +2,7 @@ package me.liliput.api.controller;
 
 import me.liliput.api.controller.model.request.ShortUrlRequest;
 import me.liliput.api.controller.model.response.LlptApiResponse;
+import me.liliput.api.controller.model.response.ShortUrlResponse;
 import me.liliput.api.service.ShortUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +24,9 @@ public class ShortUrlController {
     private ShortUrlService shortUrlService;
 
     @RequestMapping(value = {"/url"}, method = RequestMethod.POST)
-    public LlptApiResponse createShortUrl(@Valid @RequestBody ShortUrlRequest shortUrlRequest) {
+    public LlptApiResponse<ShortUrlResponse> createShortUrl(@Valid @RequestBody ShortUrlRequest shortUrlRequest) {
         System.out.println(shortUrlRequest.toString());
-        Long id = this.shortUrlService.createShortUrl(shortUrlRequest);
-        return new LlptApiResponse(id);
+        ShortUrlResponse shortUrlResponse = this.shortUrlService.createShortUrl(shortUrlRequest);
+        return new LlptApiResponse(shortUrlResponse);
     }
 }

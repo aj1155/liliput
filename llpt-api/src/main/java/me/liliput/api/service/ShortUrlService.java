@@ -1,6 +1,7 @@
 package me.liliput.api.service;
 
 import me.liliput.api.controller.model.request.ShortUrlRequest;
+import me.liliput.api.controller.model.response.ShortUrlResponse;
 import me.liliput.api.domain.ShortUrl;
 import me.liliput.api.repository.ShortUrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ShortUrlService {
     @Autowired
     private ShortUrlRepository shortUrlRepository;
 
-    public Long createShortUrl(ShortUrlRequest shortUrlRequest){
+    public ShortUrlResponse createShortUrl(ShortUrlRequest shortUrlRequest){
         ShortUrl shortUrl = new ShortUrl();
         shortUrl.setDomain(shortUrlRequest.getDomain());
         shortUrl.setPath(shortUrlRequest.getPath());
@@ -24,6 +25,9 @@ public class ShortUrlService {
 
         this.shortUrlRepository.save(shortUrl);
 
-        return shortUrl.getId();
+        ShortUrlResponse shortUrlResponse = new ShortUrlResponse();
+        shortUrlResponse.setShortUrl(shortUrl);
+
+        return shortUrlResponse;
     }
 }
