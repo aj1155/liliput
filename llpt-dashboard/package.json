@@ -1,5 +1,5 @@
 {
-  "name": "dashboard",
+  "name": "llpt-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -29,7 +29,7 @@
     "test:unit": "./node_modules/.bin/karma start ./client-config/karma.conf.js",
     "test": "npm run test:unit && npm run test:e2e"
   },
-  "author": "DS TEAM",
+  "author": "liliput",
   "license": "ISC",
   "dependencies": {
     "@angular/common": "^4.0.0-beta.1",
