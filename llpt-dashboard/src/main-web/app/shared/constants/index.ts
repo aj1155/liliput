@@ -11,7 +11,7 @@ let defaultDashboardApiUrl = DEFAULT_IN_MEMORY_API_URL;
 if (ENV === 'local-server') {
   defaultDashboardApiUrl = 'http://localhost:8080/' + API_PREFIX;
 } else if (ENV === 'dev') {
-  defaultDashboardApiUrl = 'http://api.nexters.me/' + API_PREFIX;
+  defaultDashboardApiUrl = 'http://apis.nexters.me/' + API_PREFIX;
 } else if (ENV === 'alpha') {
   defaultDashboardApiUrl = 'http://localhost:8080/' + API_PREFIX;
 } else if (ENV === 'prod') {
