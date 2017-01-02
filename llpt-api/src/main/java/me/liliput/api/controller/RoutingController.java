@@ -25,19 +25,24 @@ import java.io.UnsupportedEncodingException;
 @Controller
 @Slf4j
 public class RoutingController {
-
     @Autowired
     private UrlPathHelper urlPathHelper;
-
     @Autowired
     private ShortUrlService shortUrlService;
     @Autowired
     private RouteLogService routeLogService;
 
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    public void page(HttpServletResponse response) throws IOException, ServletException {
+        response.getWriter().print("Welcome to Liliput");
+    }
+
+    /*
+        Todo 라우터 기능은 결국엔 분리 필요할듯
+     */
     @RequestMapping(value = {"/{path}"}, method = RequestMethod.GET)
     public String get(@PathVariable String path, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RouteLogRequest routeRequest = getRouteRequest(request);
-
         String originUrl = this.shortUrlService.getOriginUrl(routeRequest.getPath());
 
         return "redirect:" + originUrl;
