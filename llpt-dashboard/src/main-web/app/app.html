@@ -1,6 +1,17 @@
 <div class="wrapper">
   <!-- common header -->
   <div class="main-contents-structure">
+
+    <header *ngIf="showHeader" class="header-structure header-skin">
+      <div class="user-profile-structure">
+        <ul class="user-profile-list-structure user-profile-list-skin">
+          <li class="user-id-skin"><a href="#"><strong>{{userName}}</strong></a></li>
+          <li *ngIf="showLogout">
+            <button class="logout-btn-skin" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+          </li>
+        </ul>
+      </div>
+    </header>
     <!-- main contents section -->
     <main class="main-structure">
       <router-outlet></router-outlet>
