@@ -4,10 +4,23 @@
         <h4>Make your links manageable</h4>
     </div>
     <div class="shorten-input-structure">
-        <input type="text">
-        <button>Shorten</button>
+        <input type="text" [ngModel]="originUrl">
+        <button (click)="shorten()">Shorten</button>
     </div>
-    <div class="shorten-result-structure">
+    <div *ngIf="shortenResult != null" class="shorten-result-structure">
         <h4>Result</h4>
+        <div>
+            ID : {{shortenResult.id}}
+            <br/>
+            ORIGIN URL : {{shortenResult.originUrl}}
+            <br/>
+            DOMAIN : {{shortenResult.domain}}
+            <br/>
+            PATH : {{shortenResult.path}}
+            <br/>
+            CREATED DATE : {{shortenResult.createdDate}}
+            <br/>
+            LAST MODIFIED DATE : {{shortenResult.lastModifiedDate}}
+        </div>
     </div>
 </div>
