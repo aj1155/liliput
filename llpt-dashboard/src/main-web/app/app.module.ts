@@ -9,13 +9,16 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryOverrideMockDbService } from './shared/mock-data/in-memory-override-mock-db.service';
+
 import { HomeModule } from './home/home.module';
+import { ShortenModule } from './shorten/shorten.module';
+
 import { RequestHandler, RequestExceptionHandler } from './shared/handlers';
 import { AppService } from './app.service';
 import { GlobalEventsManager } from './shared/events/global-events-manager';
 
 let modules:Array<Type<any> | ModuleWithProviders | any[]> = [BrowserModule, CommonModule, HttpModule, FormsModule,
-  ReactiveFormsModule, AppRoutingModule, HomeModule];
+  ReactiveFormsModule, AppRoutingModule, HomeModule, ShortenModule];
 
 if (process.env.NODE_ENV === 'local') {
   modules.push(InMemoryWebApiModule.forRoot(InMemoryOverrideMockDbService, {delay: 100, passThruUnknownUrl: true}));

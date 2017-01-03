@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+import { ShortenComponent } from "./shorten/shorten.component";
 
 const appRoutes:Routes = <Routes>[
-  {path: '', /*canActivate: [], */component: HomeComponent},
+  {path: '', /*canActivate: [], */component: ShortenComponent},
   {path: '**', redirectTo: ''} // exceptional urls redirected to default url
 ];
 
