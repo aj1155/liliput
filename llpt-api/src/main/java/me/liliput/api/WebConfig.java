@@ -1,5 +1,6 @@
 package me.liliput.api;
 
+import me.liliput.api.controller.filter.CORSFilter;
 import me.liliput.api.util.builder.PathBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,4 +20,9 @@ public class WebConfig {
 
     @Bean
     public PathBuilder pathBuilder() { return new PathBuilder(); }
+
+    @Bean
+    public CORSFilter corsFilter() {
+        return new CORSFilter();
+    }
 }

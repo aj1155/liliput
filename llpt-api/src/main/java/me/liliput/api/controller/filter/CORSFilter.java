@@ -10,10 +10,7 @@ import java.io.IOException;
  */
 public class CORSFilter implements Filter {
 
-    private String dashboardUrl;
-
-    public CORSFilter(String dashboardUrl) {
-        this.dashboardUrl = dashboardUrl;
+    public CORSFilter() {
     }
 
     @Override
@@ -26,7 +23,7 @@ public class CORSFilter implements Filter {
 
         HttpServletResponse response = (HttpServletResponse) res;
         response.addHeader("Access-Control-Max-Age", Integer.toString(1800));
-        response.addHeader("Access-Control-Allow-Origin", this.dashboardUrl);
+        response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "*");
         response.addHeader("Access-Control-Allow-Headers", "Content-Type,Accept,Cookie,Cookie__");
         response.addHeader("Access-Control-Allow-Credentials", "true");
