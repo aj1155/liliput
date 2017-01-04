@@ -1,5 +1,6 @@
 package me.liliput.api;
 
+import me.liliput.api.util.builder.PathBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.util.UrlPathHelper;
@@ -15,4 +16,7 @@ public class WebConfig {
     public UrlPathHelper urlPathHelper(){
         return  new UrlPathHelper();
     }
+
+    @Bean
+    public PathBuilder pathBuilder() { return new PathBuilder(); }
 }
