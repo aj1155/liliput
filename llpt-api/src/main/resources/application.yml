@@ -1,4 +1,6 @@
-spring.application.name: getdone
+spring.application.name: llpt
+
+dashboard.url: http://dashboard.nexters.me
 
 spring.jpa:
   database: MYSQL

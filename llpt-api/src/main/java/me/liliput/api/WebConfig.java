@@ -2,6 +2,7 @@ package me.liliput.api;
 
 import me.liliput.api.controller.filter.CORSFilter;
 import me.liliput.api.util.builder.PathBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.util.UrlPathHelper;
@@ -22,7 +23,7 @@ public class WebConfig {
     public PathBuilder pathBuilder() { return new PathBuilder(); }
 
     @Bean
-    public CORSFilter corsFilter() {
-        return new CORSFilter();
+    public CORSFilter corsFilter(@Value("${dashboard.url}") String dashboardUrl) {
+        return new CORSFilter(dashboardUrl);
     }
 }
