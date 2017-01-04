@@ -33,8 +33,8 @@ public class RoutingController {
     private RouteLogService routeLogService;
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public void page(HttpServletResponse response) throws IOException, ServletException {
-        response.getWriter().print("Welcome to Liliput");
+    public String page() throws IOException, ServletException {
+        return "redirect:http://dashboard.nexters.me";
     }
 
     /*
