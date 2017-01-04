@@ -4,6 +4,7 @@ import me.liliput.api.controller.model.request.ShortUrlRequest;
 import me.liliput.api.controller.model.response.ShortUrlResponse;
 import me.liliput.api.domain.ShortUrl;
 import me.liliput.api.repository.ShortUrlRepository;
+import me.liliput.api.util.builder.PathBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,15 @@ public class ShortUrlService {
     @Autowired
     private ShortUrlRepository shortUrlRepository;
 
-    public ShortUrlResponse createShortUrl(ShortUrlRequest shortUrlRequest){
+    @Autowired
+    private PathBuilder pathBuilder;
+
+    public ShortUrlResponse createShortUrl(ShortUrlRequest shortUrlRequest) {
         ShortUrl shortUrl = new ShortUrl();
         shortUrl.setDomain(shortUrlRequest.getDomain());
-        shortUrl.setPath(shortUrlRequest.getPath());
+
+        String randomPath = this.pathBuilder.setWebUrl(shortUrlRequest.getOriginUrl()).shorten(this.pathBuilder.getPathGenerateSource(), 6);
+        shortUrl.setPath(randomPath);
         shortUrl.setOriginUrl(shortUrlRequest.getOriginUrl());
 
         this.shortUrlRepository.save(shortUrl);
@@ -34,7 +40,7 @@ public class ShortUrlService {
         return shortUrlResponse;
     }
 
-    public List<ShortUrlResponse> getShortUrls(){
+    public List<ShortUrlResponse> getShortUrls() {
         List<ShortUrl> shortUrlList = this.shortUrlRepository.findAll();
 
         List<ShortUrlResponse> shortUrlResponseList = new ArrayList<>();
@@ -45,12 +51,11 @@ public class ShortUrlService {
         return shortUrlResponseList;
     }
 
-    public String getOriginUrl(String path){
+    public String getOriginUrl(String path) {
         String originUrl = this.shortUrlRepository.findByOriginUrl(path);
-        if(originUrl == null){
+        if (originUrl == null) {
             return "/";
-        }
-        else{
+        } else {
             return originUrl;
         }
     }
